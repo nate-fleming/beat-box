@@ -9,7 +9,7 @@ class ApplicationViews extends Component {
         return (
             <>
                 <Route exact path="/" render={(props) => {
-                    return <StrangerBeats />
+                    return <StrangerBeats handPosition={this.props.handPosition} />
                 }} />
 
             </>

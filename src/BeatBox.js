@@ -4,11 +4,21 @@ import Navbar from './components/nav/Navbar'
 import ApplicationViews from './ApplicationViews';
 
 class BeatBox extends Component {
+    state = {
+        handPosition: 'right'
+    }
+
+    changeHandPosition = (side) => {
+        this.setState({
+            handPosition: side
+        })
+    }
+
     render() {
         return (
             <div>
-                <Navbar />
-                <ApplicationViews />
+                <Navbar changeHandPosition={this.changeHandPosition} />
+                <ApplicationViews handPosition={this.state.handPosition} />
             </div>
         )
     }

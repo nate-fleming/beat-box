@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Dropdown, Container } from 'semantic-ui-react'
+import { Menu, Dropdown, Container, Button, Icon } from 'semantic-ui-react'
 import './navbar.css'
 
 export default class Navbar extends Component {
@@ -10,6 +10,22 @@ export default class Navbar extends Component {
                     <Container>
                         <Menu.Item as='a' href='/' className='logo-name'>
                             Beat-Box
+                        </Menu.Item>
+                        <Menu.Item>
+                            <Button.Group>
+                                <Button animated onClick={() => this.props.changeHandPosition('left')}>
+                                    <Button.Content visible>LH</Button.Content>
+                                    <Button.Content hidden>
+                                        <Icon name='hand paper outline' className='left-hand' />
+                                    </Button.Content>
+                                </Button>
+                                <Button animated onClick={() => this.props.changeHandPosition('right')}>
+                                    <Button.Content visible>RH</Button.Content>
+                                    <Button.Content hidden>
+                                        <Icon name='hand paper outline' />
+                                    </Button.Content>
+                                </Button>
+                            </Button.Group>
                         </Menu.Item>
                         <Menu.Item position='right'>
                             <Dropdown item simple text='Select Kit'>

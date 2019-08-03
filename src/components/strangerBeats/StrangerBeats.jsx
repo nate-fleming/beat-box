@@ -99,8 +99,14 @@ export default class StrangerBeats extends Component {
                         </GridColumn>
                     </GridRow>
                     <GridRow centered>
-                        <RHDrumkit kick={this.kik} snare={this.snare} tom1={this.t1} tom2={this.t2}>
-                        </RHDrumkit>
+                        {
+                            this.props.handPosition === 'right' ?
+                                <RHDrumkit kick={this.kik} snare={this.snare} tom1={this.t1} tom2={this.t2}>
+                                </RHDrumkit>
+                                :
+                                <LHDrumkit kick={this.kik} snare={this.snare} tom1={this.t1} tom2={this.t2}>
+                                </LHDrumkit>
+                        }
                     </GridRow>
                 </Grid>
             </Container>
