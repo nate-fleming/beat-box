@@ -1,0 +1,30 @@
+@media (orientation: portrait) {
+
+    .drum {
+        height: 10em;
+        width: auto;
+        margin-top: 2em
+    }
+
+    .fill {
+        height: 8em;
+        width: auto
+    }
+
+}
+
+
+
+@media (orientation: landscape) {
+
+    .drum {
+        height: 10em;
+        width: auto
+    }
+
+    .fill {
+        height: 6em;
+        width: auto
+    }
+
+}

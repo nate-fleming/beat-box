@@ -1,0 +1,14 @@
+body {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background: linear-gradient(to bottom, rgba(77, 77, 77, 0.3) 0%, rgba(87, 86, 86, 0.7) 75%, #161616 100%), url("../../img/neon.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+}
+
+.fill-text{
+    font-size: .75em
+}
