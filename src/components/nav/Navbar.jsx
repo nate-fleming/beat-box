@@ -12,7 +12,7 @@ export default class Navbar extends Component {
                             Beat-Box
                         </Menu.Item>
                         <Menu.Item>
-                            <Button.Group>
+                            <Button.Group compact>
                                 <Button animated onClick={() => this.props.changeHandPosition('left')}>
                                     <Button.Content visible>LH</Button.Content>
                                     <Button.Content hidden>

@@ -16,7 +16,8 @@ import LHDrumkit from '../Drums/LHDrumkit'
 export default class StrangerBeats extends Component {
 
     state = {
-        loopIsPlaying: false
+        loopIsPlaying: false,
+        orientation: ''
     }
 
     kik = new Howl({
@@ -69,6 +70,30 @@ export default class StrangerBeats extends Component {
         this.loop.pause()
     }
 
+    getOrientation = () => {
+        if (window.innerWidth < window.innerHeight) {
+            this.setState({
+                orientation: 'portrait'
+            })
+        } else {
+            this.setState({
+                orientation: 'landscape'
+            })
+        }
+    }
+
+    isPortrait = () => {
+        return window.innerWidth > window.innerHeight
+    }
+
+    componentDidMount() {
+        window.addEventListener('orientationchange', () => this.setState({
+            orientation: this.isPortrait() ? 'portrait' : 'landscape'
+        }))
+
+        this.getOrientation()
+    }
+
 
     render() {
         return (
@@ -101,10 +126,10 @@ export default class StrangerBeats extends Component {
                     <GridRow centered>
                         {
                             this.props.handPosition === 'right' ?
-                                <RHDrumkit kick={this.kik} snare={this.snare} tom1={this.t1} tom2={this.t2}>
+                                <RHDrumkit kick={this.kik} snare={this.snare} tom1={this.t1} tom2={this.t2} orientation={this.state.orientation}>
                                 </RHDrumkit>
                                 :
-                                <LHDrumkit kick={this.kik} snare={this.snare} tom1={this.t1} tom2={this.t2}>
+                                <LHDrumkit kick={this.kik} snare={this.snare} tom1={this.t1} tom2={this.t2} orientation={this.state.orientation}>
                                 </LHDrumkit>
                         }
                     </GridRow>

@@ -7,38 +7,10 @@ import './drumkit.css'
 
 export default class RHDrumkit extends Component {
 
-    state = {
-        orientation: ''
-    }
-
-    getOrientation = () => {
-        if (window.innerWidth < window.innerHeight) {
-            this.setState({
-                orientation: 'portrait'
-            })
-        } else {
-            this.setState({
-                orientation: 'landscape'
-            })
-        }
-    }
-
-    isPortrait = () => {
-        return window.innerWidth > window.innerHeight
-    }
-
-    componentDidMount() {
-        window.addEventListener('orientationchange', () => this.setState({
-            orientation: this.isPortrait() ? 'portrait' : 'landscape'
-        }))
-
-        this.getOrientation()
-    }
 
     render() {
-        console.log('state', this.state.orientation)
         return (
-            this.state.orientation === 'landscape' ?
+            this.props.orientation === 'landscape' ?
                 <>
                     <GridColumn width={4}>
                         <Image className='drum' src={kick} onClick={() => this.props.kick.play()} style={{ border: 'none', marginTop: 40 }} ></Image>
