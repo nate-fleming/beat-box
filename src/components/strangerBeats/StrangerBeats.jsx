@@ -1,23 +1,16 @@
 import React, { Component } from 'react'
 import { Container, Grid, Image, GridRow, GridColumn } from 'semantic-ui-react'
-import kick from '../../img/kick.png'
-import snare from '../../img/snare.png'
-import tom from '../../img/tom.png'
-import fill from '../../img/fill.png'
-import kit from '../../img/drumkit.png'
-import boombox from '../../img/boombox2.png'
 import './strangerBeats.css'
-import { Howl, Howler } from 'howler'
-import kik from '../../img/Kick.mp3'
+import { Howl } from 'howler'
 import RHDrumkit from '../Drums/RHDrumkit'
 import LHDrumkit from '../Drums/LHDrumkit'
+import BoxFills from '../Box&Fills/BoxFills'
 
 
 export default class StrangerBeats extends Component {
 
     state = {
-        loopIsPlaying: false,
-        orientation: ''
+        loopIsPlaying: false
     }
 
     kik = new Howl({
@@ -56,42 +49,18 @@ export default class StrangerBeats extends Component {
         preload: true
     })
 
-    handlePlay() {
+    handlePlay = () => {
         this.setState({
             loopIsPlaying: true
         })
         this.loop.play()
     }
 
-    handlePause() {
+    handlePause = () => {
         this.setState({
             loopIsPlaying: false
         })
         this.loop.pause()
-    }
-
-    getOrientation = () => {
-        if (window.innerWidth < window.innerHeight) {
-            this.setState({
-                orientation: 'portrait'
-            })
-        } else {
-            this.setState({
-                orientation: 'landscape'
-            })
-        }
-    }
-
-    isPortrait = () => {
-        return window.innerWidth > window.innerHeight
-    }
-
-    componentDidMount() {
-        window.addEventListener('orientationchange', () => this.setState({
-            orientation: this.isPortrait() ? 'portrait' : 'landscape'
-        }))
-
-        this.getOrientation()
     }
 
 
@@ -100,36 +69,15 @@ export default class StrangerBeats extends Component {
             <Container className='stranger-container' >
                 <Grid>
                     <GridRow style={{ marginTop: 20 }}>
-                        <GridColumn width={8}>
-                            <GridRow>
-                                <Image src={boombox} style={{ height: 100 }}
-                                    onClick={() => (this.state.loopIsPlaying === false) ? this.handlePlay() : this.handlePause()} />
-                            </GridRow>
-                        </GridColumn>
-                        <GridColumn width={4}>
-                            <GridRow>
-                                <Image className='fill' src={fill} onClick={() => this.fill.play()} />
-                            </GridRow>
-                            <GridRow>
-                                <h2 className='fill-text'>1/2 Bar Fill</h2>
-                            </GridRow>
-                        </GridColumn>
-                        <GridColumn width={4}>
-                            <GridRow>
-                                <Image className='fill' src={kit} onClick={() => this.fillCollins.play()} />
-                            </GridRow>
-                            <GridRow>
-                                <h2 className='fill-text'>Fill Collins</h2>
-                            </GridRow>
-                        </GridColumn>
+                        <BoxFills fill={this.fill} fillCollins={this.fillCollins} handlePlay={this.handlePlay} handlePause={this.handlePause} loopIsPlaying={this.state.loopIsPlaying}></BoxFills>
                     </GridRow>
                     <GridRow centered>
                         {
                             this.props.handPosition === 'right' ?
-                                <RHDrumkit kick={this.kik} snare={this.snare} tom1={this.t1} tom2={this.t2} orientation={this.state.orientation}>
+                                <RHDrumkit kick={this.kik} snare={this.snare} tom1={this.t1} tom2={this.t2} orientation={this.props.orientation}>
                                 </RHDrumkit>
                                 :
-                                <LHDrumkit kick={this.kik} snare={this.snare} tom1={this.t1} tom2={this.t2} orientation={this.state.orientation}>
+                                <LHDrumkit kick={this.kik} snare={this.snare} tom1={this.t1} tom2={this.t2} orientation={this.props.orientation}>
                                 </LHDrumkit>
                         }
                     </GridRow>
